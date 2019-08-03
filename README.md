@@ -1,2 +1,2 @@
 # SimplePerceptron
-単純パーセプトロンをpythonで実装したメモ
+単純パーセプトロンをpythonで実装した際のメモ
