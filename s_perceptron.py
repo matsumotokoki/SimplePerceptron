@@ -18,13 +18,9 @@ def Partial_differentiation(v,x,y,omega):
     return dx,dy
 
 def read_data(path):
-    data = []
     rdata = []
     sdata = []
     pdata = []
-    x =  []
-    y = []
-    v = []
     with open(path) as f:
         data = f.readlines()
         for i in range(len(data)):
@@ -38,6 +34,16 @@ def read_data(path):
         y.append(float(pdata[i][1]))
         v.append(float(pdata[i][2]))
     return x,y,v
+
+def plot_line(omega):
+    plot_x = np.arange(-2,5,0.1)
+    plot_fx = -(omega[1]/omega[0])*plot_x
+    plt.plot(plot_x,plot_fx)
+    plt.axes().set_aspect('equal')
+    plt.xlim([-2.1, 5.1])
+    plt.ylim([-2.1, 6])
+    plt.pause(0.1)
+    plt.clf()
 
 if __name__=="__main__":
     path = './input.txt'
@@ -56,7 +62,7 @@ if __name__=="__main__":
         else:
             plt.plot(x[i],y[i],marker='.', markersize=10,color='red')
     
-    for n in range(len(x)*3):
+    for n in range(len(x)*2):
         i = n%100
         error_sum = 0
         try:
@@ -77,14 +83,7 @@ if __name__=="__main__":
                 plt.plot(x[i],y[i],marker='.', markersize=10,color='blue')
             else:
                 plt.plot(x[i],y[i],marker='.', markersize=10,color='red')
-        plot_x = np.arange(-2,5,0.1)
-        plot_fx = -(omega[1]/omega[0])*plot_x
-        plt.plot(plot_x,plot_fx)
-        plt.axes().set_aspect('equal')
-        plt.xlim([-2.1, 5.1])
-        plt.ylim([-2.1, 6])
-        plt.pause(0.1)
-        plt.clf()
+        plot_line(omega)
     print('omega :' + str(k_omega))
     print(omega)
 
