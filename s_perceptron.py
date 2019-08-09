@@ -42,13 +42,13 @@ def plot_line(omega):
     plt.axes().set_aspect('equal')
     plt.xlim([-2.1, 5.1])
     plt.ylim([-2.1, 6])
-    plt.pause(0.1)
+    plt.pause(0.05)
     plt.clf()
 
 if __name__=="__main__":
     path = './input.txt'
-    omega = [0.5,-0.6] #適当な2値
-    eta = 0.05 #学習率
+    omega = [0.2,-0.2] #適当な2値
+    eta = 0.01 #学習率
     tmp = 0
     x = []
     y = []
