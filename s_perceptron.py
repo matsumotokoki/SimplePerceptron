@@ -5,11 +5,11 @@ import copy
 
 
 def error_function(v,x,y,omega):
-    L = (((1/(1+math.exp(-omega[0]*x-omega[1]*y-1)))-v)**2)/2 #2乗誤差(微分可能にするため)
+    L = (((1/(1+math.exp(-omega[0]*x-omega[1]*y)))-v)**2)/2 #2乗誤差(微分可能にするため)
     return L
 
 def sigmoid_func(x,y,omega):
-    return 1/(1+math.exp(-(x*omega[0]+y*omega[1]+1))) #いたって普通のシグモイド関数
+    return 1/(1+math.exp(-(x*omega[0]+y*omega[1]))) #いたって普通のシグモイド関数
 
 def Partial_differentiation(v,x,y,omega):
     d = sigmoid_func(x,y,omega)
@@ -37,7 +37,7 @@ def read_data(path):
 
 def plot_line(omega):
     plot_x = np.arange(-2,5,0.1)
-    plot_fx = -(omega[1]/omega[0])*plot_x
+    plot_fx = -(omega[0]/omega[1])*plot_x
     plt.plot(plot_x,plot_fx)
     plt.axes().set_aspect('equal')
     plt.xlim([-2.1, 5.1])
@@ -47,8 +47,8 @@ def plot_line(omega):
 
 if __name__=="__main__":
     path = './input.txt'
-    omega = [0.2,-0.2] #適当な2値
-    eta = 0.01 #学習率
+    omega = [0.5,-0.6] #適当な2値
+    eta = 0.05 #学習率
     tmp = 0
     x = []
     y = []
@@ -62,7 +62,7 @@ if __name__=="__main__":
         else:
             plt.plot(x[i],y[i],marker='.', markersize=10,color='red')
     
-    for n in range(len(x)*2):
+    for n in range(len(x)*10):
         i = n%100
         error_sum = 0
         try:
@@ -88,7 +88,7 @@ if __name__=="__main__":
     print(omega)
 
     plot_x = np.arange(-2,5,0.1)
-    plot_fx = -(omega[1]/omega[0])*plot_x
+    plot_fx = -(omega[0]/omega[1])*plot_x
     plt.plot(plot_x,plot_fx)
     plt.xlim([-2.1, 5.1])
     plt.ylim([-2.1, 6])
